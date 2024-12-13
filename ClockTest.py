@@ -24,11 +24,6 @@ else:
 def save_to_csv(df):
     df.to_csv(FILE_PATH, index=False)
 
-st.title("Clock In/Out System")
-
-# Text input for user's name
-name = st.text_input("Enter your name:")
-
 # Button to clock in
 if st.button("Clock In"):
     if name.strip():
