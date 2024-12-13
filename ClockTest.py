@@ -21,7 +21,6 @@ def save_to_csv(df):
 st.title("Clock In/Out System")
 
 # Text input for user's name
-st.title("Clock Time")
 studf = pd.read_csv('stulist.csv')
 name = st.selectbox('Your Name', options = studf['Name'])
 
