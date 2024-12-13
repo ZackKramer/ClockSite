@@ -12,6 +12,19 @@ studf = pd.read_csv('stulist.csv')
 if 'dataframe' not in st.session_state:
     st.session_state['dataframe'] = pd.DataFrame(columns=['Name', 'Clock In', 'Clock Out', 'Hours Worked'])
 
+FILE_PATH = "shared_data.csv"
+
+# Load the shared dataframe from CSV
+if os.path.exists(FILE_PATH):
+    dataframe = pd.read_csv(FILE_PATH)
+    dataframe['Clock In'] = pd.to_datetime(dataframe['Clock In'])
+    dataframe['Clock Out'] = pd.to_datetime(dataframe['Clock Out'])
+else:
+    dataframe = pd.DataFrame(columns=['Name', 'Clock In', 'Clock Out', 'Hours Worked'])
+
+# Function to save the dataframe to a file
+def save_to_csv(df):
+    df.to_csv(FILE_PATH, index=False)
 
 name = st.selectbox('Your Name', options = studf['Name'])
 
