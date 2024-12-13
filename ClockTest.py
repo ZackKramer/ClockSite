@@ -8,6 +8,11 @@ st.title("Clock Time")
 
 studf = pd.read_csv('stulist.csv')
 
+# Initialize session state to store the dataframe
+if 'dataframe' not in st.session_state:
+    st.session_state['dataframe'] = pd.DataFrame(columns=['Name', 'Clock In', 'Clock Out', 'Hours Worked'])
+
+
 name = st.selectbox('Your Name', options = studf['Name'])
 
 # Button to clock in
