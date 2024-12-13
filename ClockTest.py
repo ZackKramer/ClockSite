@@ -51,3 +51,13 @@ if st.button("Clock Out"):
 
 # Display the updated dataframe
 st.write("Current DataFrame:", st.session_state['dataframe'])
+
+# Button to export the dataframe as a CSV and clear it
+if st.button("Export DataFrame and Clear"):
+    if not st.session_state['dataframe'].empty:
+        csv = st.session_state['dataframe'].to_csv(index=False)
+        st.download_button(label="Download CSV", data=csv, file_name="time_tracking.csv", mime="text/csv")
+        st.session_state['dataframe'] = pd.DataFrame(columns=['Name', 'Clock In', 'Clock Out', 'Hours Worked'])
+        st.success("Dataframe exported and cleared!")
+    else:
+        st.warning("Dataframe is empty. Nothing to export.")
